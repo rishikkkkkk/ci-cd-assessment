@@ -1,0 +1,26 @@
+name: Call Shared Docker Workflow
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+
+jobs:
+  # STAGING (develop branch)
+  staging:
+    if: github.ref_name == 'develop'
+    uses: rishikkkkkk/shared-workflows/.github/workflows/docker-ci.yml@v1.0
+    with:
+      image_name: my-app-assmnt
+      tag: staging-${{ github.sha }}
+    secrets: inherit
+
+  # PRODUCTION (main branch)
+  production:
+    if: github.ref_name == 'main'
+    uses: rishikkkkkk/shared-workflows/.github/workflows/docker-ci.yml@v1.0
+    with:
+      image_name: my-app-assmnt
+      tag: prod-v1.0 
+    secrets: inherit
