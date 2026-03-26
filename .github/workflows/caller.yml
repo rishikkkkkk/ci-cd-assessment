@@ -16,7 +16,7 @@ jobs:
       tag: staging-${{ github.sha }}
     secrets: inherit
 
-  # PRODUCTION (main branch)
+  # PRODUCTION(main branch)
   production:
     if: github.ref_name == 'main'
     uses: rishikkkkkk/shared-workflows/.github/workflows/docker-ci.yml@v1.0.2
